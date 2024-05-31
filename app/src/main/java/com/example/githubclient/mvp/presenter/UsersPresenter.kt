@@ -1,18 +1,26 @@
 package com.example.githubclient.mvp.presenter
 
-import com.example.githubclient.mvp.model.GitHubUser
-import com.example.githubclient.mvp.model.GitHubUsersRepository
+import android.util.Log
+import com.example.githubclient.mvp.model.entity.GitHubUser
+import com.example.githubclient.mvp.model.repositiry.IGitHubUsersRepository
 import com.example.githubclient.mvp.presenter.list.IUserListPresenter
 import com.example.githubclient.mvp.view.UsersView
 import com.example.githubclient.mvp.view.list.UserItemView
 import com.example.githubclient.navigation.AndroidScreens
+import com.example.githubclient.navigation.IScreens
 import com.github.terrakok.cicerone.Router
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moxy.MvpPresenter
 
-class UsersPresenter(private val usersRepository: GitHubUsersRepository, val router: Router) :
+class UsersPresenter(
+    private val uiScheduler: Scheduler,
+    private val usersRepository: IGitHubUsersRepository,
+    private val router: Router,
+    private val screens: IScreens
+) :
     MvpPresenter<UsersView>() {
 
     class UserListPresenter : IUserListPresenter {
@@ -22,7 +30,12 @@ class UsersPresenter(private val usersRepository: GitHubUsersRepository, val rou
 
         override fun bindView(view: UserItemView) {
             val user = users[view.pos]
-            view.setLogin(user.login)
+            user.login.let {
+                view.setLogin(it)
+            }
+            user.avatarUrl?.let {
+                view.loadAvatar(it)
+            }
         }
 
         override fun getCount() = users.size
@@ -45,15 +58,14 @@ class UsersPresenter(private val usersRepository: GitHubUsersRepository, val rou
 
     private fun loadData() {
         val disposable = usersRepository.getUsers()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ users ->
+            .observeOn(uiScheduler)
+            .subscribe ({ users ->
+                Log.d("UsersPresenter", "Users loaded: $users")
                 usersListPresenter.users.clear()
                 usersListPresenter.users.addAll(users)
                 viewState.updateList()
             }, { error ->
-                // Обработка ошибок
-                error.printStackTrace()
+                Log.e("UsersPresenter", "Error loading users", error)
             })
 
         disposables.add(disposable)

@@ -1,7 +1,6 @@
 package com.example.githubclient.ui.activity
 
 import android.os.Bundle
-import android.util.Log
 import com.example.githubclient.MyApp
 import com.example.githubclient.R
 import com.example.githubclient.databinding.ActivityMainBinding
@@ -43,20 +42,16 @@ class MainActivity : MvpAppCompatActivity(), MainView {
     }
 
     override fun onBackPressed() {
-        //Log.d("@@@", "onBackPressed called")
         var handled = false
         supportFragmentManager.fragments.forEach {
             if (it is BackButtonListener && it.backPressed()) {
-                //Log.d("@@@", "Back pressed handled by fragment")
                 handled = true
                 return
             }
         }
         if (!handled) {
-            //Log.d("@@@", "Back pressed not handled, calling presenter.backClicked()")
             presenter.backClicked()
         } else {
-            //Log.d("@@@", "Back pressed handled, calling super.onBackPressed()")
             super.onBackPressed()
         }
     }

@@ -1,6 +1,6 @@
 package com.example.githubclient.navigation
 
-import com.example.githubclient.mvp.model.GitHubUser
+import com.example.githubclient.mvp.model.entity.GitHubUser
 import com.example.githubclient.ui.fragment.UserDetailsFragment
 import com.example.githubclient.ui.fragment.UsersFragment
 import com.github.terrakok.cicerone.androidx.FragmentScreen

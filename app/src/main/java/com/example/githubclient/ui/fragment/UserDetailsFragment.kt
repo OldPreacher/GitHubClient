@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.githubclient.databinding.FragmentUserDetailsBinding
-import com.example.githubclient.mvp.model.GitHubUser
+import com.example.githubclient.mvp.model.entity.GitHubUser
 
 class UserDetailsFragment : Fragment() {
 
