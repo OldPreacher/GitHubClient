@@ -1,0 +1,8 @@
+<resources>
+    <dimen name="fab_margin">16dp</dimen>
+    <dimen name="rv_users_padding">16dp</dimen>
+    <dimen name="iv_avatar_size">50dp</dimen>
+    <dimen name="iv_avatar_margin">16dp</dimen>
+    <dimen name="tv_login_marginStart">16dp</dimen>
+    <dimen name="item_user_ll_height">50dp</dimen>
+</resources>
