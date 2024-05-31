@@ -3,11 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/fragment_user_details_ll_padding">
 
     <TextView
         android:id="@+id/tvUserLogin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        android:textSize="@dimen/tv_user_login_text_size" />
 </LinearLayout>

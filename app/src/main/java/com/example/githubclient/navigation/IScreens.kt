@@ -5,5 +5,5 @@ import com.github.terrakok.cicerone.Screen
 
 interface IScreens {
     fun users(): Screen
-    /*fun usersDetails(user: GitHubUser): Screen*/
+    fun userDetails(user: GitHubUser): Screen
 }

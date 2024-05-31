@@ -49,18 +49,11 @@ dependencies {
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-    // Основные зависимости Moxy
-    implementation("com.github.moxy-community:moxy:2.2.2")
-    implementation("com.github.moxy-community:moxy-androidx:2.2.2")
-
-    // Аннотации и процессор аннотаций
-    kapt("com.github.moxy-community:moxy-compiler:2.2.2")
-
-    // Если используете Moxy с Kotlin
-    implementation("com.github.moxy-community:moxy-ktx:2.2.2")
-
-    implementation("com.github.terrakok:cicerone:7.1")
-
+    implementation(libs.moxy)
+    implementation(libs.moxy.androidx)
+    kapt(libs.moxy.compiler)
+    implementation(libs.moxy.ktx)
+    implementation(libs.cicerone)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

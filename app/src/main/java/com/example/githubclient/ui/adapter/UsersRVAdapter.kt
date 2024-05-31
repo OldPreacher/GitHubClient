@@ -12,7 +12,7 @@ class UsersRVAdapter(private val presenter: IUserListPresenter) :
 
     inner class ViewHolder(private val viewBinding: ItemUserBinding) :
         RecyclerView.ViewHolder(viewBinding.root), UserItemView {
-            /** Вынести в отдельный файл с константами (const val INVALID_INDEX = -1)**/
+            /** Вынести в отдельный файл с константами (const val INVALID_INDEX = -1) **/
         override var pos = -1
 
         override fun setLogin(text: String) = with(viewBinding) {
