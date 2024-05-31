@@ -1,5 +1,7 @@
 package com.example.githubclient.mvp.model
 
+import io.reactivex.rxjava3.core.Single
+
 class GitHubUsersRepository {
     private val users = listOf(
         GitHubUser("login1"),
@@ -9,7 +11,7 @@ class GitHubUsersRepository {
         GitHubUser("login5")
     )
 
-    fun getUsers() : List<GitHubUser> {
-        return users
+    fun getUsers() : Single<List<GitHubUser>> {
+        return Single.just(users)
     }
 }

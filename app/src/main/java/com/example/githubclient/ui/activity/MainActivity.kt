@@ -14,8 +14,6 @@ import moxy.ktx.moxyPresenter
 
 class MainActivity : MvpAppCompatActivity(), MainView {
 
-    // TEST
-
     private lateinit var binding: ActivityMainBinding
     private val presenter by moxyPresenter {
         MainPresenter(

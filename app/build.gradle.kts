@@ -54,6 +54,8 @@ dependencies {
     kapt(libs.moxy.compiler)
     implementation(libs.moxy.ktx)
     implementation(libs.cicerone)
+    implementation(libs.rxjava)
+    implementation(libs.rxandroid)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
